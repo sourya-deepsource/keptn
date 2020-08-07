@@ -31,7 +31,7 @@ func GetProjectProjectNameStageStageNameServiceServiceNameResourceResourceURIHan
 	params service_resource.GetProjectProjectNameStageStageNameServiceServiceNameResourceResourceURIParams) middleware.Responder {
 	logger := utils.NewLogger("", "", "configuration-service")
 
-    common.LockProject(params.ProjectName)
+	common.LockProject(params.ProjectName)
 	defer common.UnlockProject(params.ProjectName)
 
 	serviceConfigPath := config.ConfigDir + "/" + params.ProjectName + "/" + params.ServiceName
@@ -106,7 +106,7 @@ func PostProjectProjectNameStageStageNameServiceServiceNameResourceHandlerFunc(
 	logger := utils.NewLogger("", "", "configuration-service")
 	if !common.ProjectExists(params.ProjectName) {
 		return service_resource.NewPostProjectProjectNameStageStageNameServiceServiceNameResourceBadRequest().
-		WithPayload(&models.Error{Code: 400, Message: swag.String("Project " + params.ProjectName + " does not exist")})
+			WithPayload(&models.Error{Code: 400, Message: swag.String("Project " + params.ProjectName + " does not exist")})
 	}
 
 	common.LockProject(params.ProjectName)
@@ -239,7 +239,7 @@ func PutProjectProjectNameStageStageNameServiceServiceNameResourceHandlerFunc(
 		return service_resource.NewPutProjectProjectNameStageStageNameServiceServiceNameResourceBadRequest().
 			WithPayload(&models.Error{Code: 400, Message: swag.String("Project " + params.ProjectName + " does not exist")})
 	}
-	
+
 	common.LockProject(params.ProjectName)
 	defer common.UnlockProject(params.ProjectName)
 
@@ -308,7 +308,7 @@ func PutProjectProjectNameStageStageNameServiceServiceNameResourceResourceURIHan
 		return service_resource.NewPutProjectProjectNameStageStageNameServiceServiceNameResourceResourceURIBadRequest().
 			WithPayload(&models.Error{Code: 400, Message: swag.String("Service does not exist")})
 	}
-	
+
 	serviceConfigPath := config.ConfigDir + "/" + params.ProjectName + "/" + params.ServiceName
 
 	logger.Debug("updating resource(s) in: " + serviceConfigPath + " in stage " + params.StageName)
