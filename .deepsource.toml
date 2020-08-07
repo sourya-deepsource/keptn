@@ -5,7 +5,8 @@ name = "go"
 enabled = true
 
   [analyzers.meta]
-  import_paths = ["github.com/keptn/keptn"]
+  import_paths = ["github.com/keptn/keptn/cli", "github.com/keptn/keptn/cli"]
+  import_root = "github.com/keptn/keptn"
 
 [[transformers]]
 name = "gofmt"
