@@ -108,13 +108,13 @@ func TestAddResourceWhenArgsArePresent(t *testing.T) {
 
 	cmd := fmt.Sprintf("add-resource --project=%s --stage=%s --service=%s --resource=%s "+
 		"-- resourceUri=%s --mock", "sockshop", "dev", "carts", resourceFileName, "resource/"+resourceFileName)
-	_, err := executeActionCommandC(cmd)	
+	_, err := executeActionCommandC(cmd)
 	if err == nil {
-		t.Errorf("Expected an error")	
+		t.Errorf("Expected an error")
 	}
 	got := err.Error()
 	expected := "accepts 0 arg(s), received 2"
 	if got != expected {
-		t.Errorf("Expected %q, got %q", expected, got)	
+		t.Errorf("Expected %q, got %q", expected, got)
 	}
 }

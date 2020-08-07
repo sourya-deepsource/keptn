@@ -68,7 +68,7 @@ func PostProjectProjectNameStageHandlerFunc(params stage.PostProjectProjectNameS
 
 	common.LockProject(params.ProjectName)
 	defer common.UnlockProject(params.ProjectName)
-	
+
 	err := common.CreateBranch(params.ProjectName, params.Stage.StageName, "master")
 	if err != nil {
 		logger.Error(fmt.Sprintf("Could not create %s branch for project %s", params.Stage.StageName, params.ProjectName))
